@@ -1,0 +1,44 @@
+@mixin size($w, $h)
+{
+	width: $w;
+	height: $h;
+}
+
+@mixin text($w, $h)
+{
+	font-size: $w;
+	line-height: $h;
+}
+
+
+@media screen and (max-width: 1439px) {
+	.banner {
+		img {
+			width: 100%;
+		}
+	}
+}
+
+@media screen and (max-width: 1199px) {
+	
+}
+
+@media screen and (max-width: 991px) {
+	
+}
+
+@media screen and (max-width: 769px) {	
+}
+
+@media screen and (max-width: 733px) {
+}
+
+@media screen and (max-width: 561px) {
+}
+
+@media screen and (max-width: 426px) {
+}
+
+@media screen and (max-width: 333px) {
+
+}
