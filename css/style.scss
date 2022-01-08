@@ -175,7 +175,7 @@ input[type="search"] {
 }
 
 .banner__img{
-	background: url(/images/menu1.png) no-repeat right top / contain;
+	background: url(../images/menu1.png) no-repeat right top / contain;
 	height: auto;
 	min-height: 484px;
 	width: 100%;
@@ -368,7 +368,7 @@ nav {
 	max-width: 1363px;
 	min-height: 610px;
 	margin: 0 auto;
-	background: linear-gradient(90deg, #211F20 32%, rgba(68, 64, 63, 0) 100%), url(/images/chicken.png) no-repeat right / cover;
+	background: linear-gradient(90deg, #211F20 32%, rgba(68, 64, 63, 0) 100%), url(../images/chicken.png) no-repeat right / cover;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -434,12 +434,12 @@ nav {
 	position: absolute;
 	width: 227px;
 	height: 227px;
-	background: url(/images/onionwhite.png) no-repeat center center;
+	background: url(../images/onionwhite.png) no-repeat center center;
 	background-size: 80px;
 	background-position-y: 66px;
 	transition: 0.1s ease all;
 	&:hover {
-		background: url(/images/oniongreen.png) no-repeat center center;
+		background: url(../images/oniongreen.png) no-repeat center center;
 		background-position-y: 66px;
 		background-size: 80px;
 		transition: 0.1s ease all;
@@ -456,12 +456,12 @@ nav {
 	position: absolute;
 	width: 227px;
 	height: 227px;
-	background: url(/images/flashwhite.png) no-repeat center center;
+	background: url(../images/flashwhite.png) no-repeat center center;
 	background-size: 70px;
 	background-position-y: 66px;
 	transition: 0.1s ease all;
 	&:hover {
-		background: url(/images/flashgreen.png) no-repeat center center;
+		background: url(../images/flashgreen.png) no-repeat center center;
 		background-position-y: 66px;
 		background-size: 70px;
 		transition: 0.1s ease all;
@@ -478,12 +478,12 @@ nav {
 	position: absolute;
 	width: 227px;
 	height: 227px;
-	background: url(/images/chefwhite.png) no-repeat center center;
+	background: url(../images/chefwhite.png) no-repeat center center;
 	background-size: 70px;
 	background-position-y: 66px;
 	transition: 0.1s ease all;
 	&:hover {
-		background: url(/images/chefgreen.png) no-repeat center center;
+		background: url(../images/chefgreen.png) no-repeat center center;
 		background-position-y: 66px;
 		background-size: 70px;
 		transition: 0.1s ease all;
@@ -499,7 +499,7 @@ nav {
 //__________________
 
 .contacts {
-	background: url(/images/bigmap.png) no-repeat center top / cover;
+	background: url(../images/bigmap.png) no-repeat center top / cover;
 	height: 675px;
 	margin-top: -160px;
 	position: relative;
@@ -544,7 +544,7 @@ nav {
 	.span1::before {
 		content: '';
 			position: absolute;
-			background: url(/images/Location2.svg);
+			background: url(../images/Location2.svg);
 			@include size(24px,24px);
 			left: -35px;
 			top: -3px;
@@ -552,7 +552,7 @@ nav {
 	.span2::before {
 		content: '';
 		position: absolute;
-		background: url(/images/Message2.svg);
+		background: url(../images/Message2.svg);
 		@include size(24px,24px);
 		left: -35px;
 		top: -3px;
