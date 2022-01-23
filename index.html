@@ -6,14 +6,35 @@
 	<title>LOGOS</title>
 	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+
+<div class="popup__bg">
+	<div class="popup">
+		<div class="popup__close">
+			<div class="stick"></div>
+			<div class="stick rotate"></div>
+		</div>
+		<img src="images/Vector-mod.svg" alt="cart">
+		<h3>Корзина пустая</h3>
+		<div class="modal__btn">
+			Посмотреть меню
+		</div>
+	</div>
+</div>
 
 <header>
 	<div class="container">
 		<div class="header">
-			<a href="#">
-				<img src="images/LOGOS.svg" alt="LOGOS">
-			</a>
+			<div class="header__top">
+				<div class="header__burger">
+					<span> </span>
+					<p>МЕНЮ</p>
+				</div>
+				<a href="#top" class='scrollto'>
+					<img src="images/LOGOS.svg" alt="LOGOS">
+				</a>
+			</div>
 			<div class="input__search">
 				<input type="search" name="search" id="search" placeholder="Введите адрес доставки">
 			</div>
@@ -27,45 +48,52 @@
 				</div>
 			</div>
 			<a href="#">
-				<div class="header__btn_cart">
+				<div class="header__btn_cart cart__mob" data-action="cartBtn">
 					<p>Корзина</p>
-					<div class="circle"><span>4</span></div>
+					<div class="circle" data-action="headerCounter">0</div>
 				</div>
 			</a>
 		</div>
 	</div>
 </header>
 
-<div class="banner">
-	<img src="images/menu1.png" alt="banner">
+<div class="banner" id="top">
+	<img class="banner__img"  src="images/menu1.png" alt="banner" data-action="banner">
+	<img class="banner__img-mob" src="images/menu2.png" alt="banner" data-action="bannerMob">
 </div>
 
-<nav>
+<nav data-action="nav">
 	<div class="container">
 		<ul class="nav__menu">
-			<li class="active"><a href="#">Холодные закуски</a></li>
-			<li><a href="#">Горячие закуски</a></li>
-			<li><a href="#">Мясные блюда</a></li>
-			<li><a href="#">Супы </a></li>
-			<li><a href="#">Рыбные блюда</a></li>
-			<li><a href="#">Гриль меню</a></li>
-			<li><a href="#">Фирменные блюда</a></li>
-			<li><a href="#">Напитки</a></li>
+			<li class="active"><a href="#cold" class="scrollto">Холодные закуски</a></li>
+			<li><a href="#hot" class="scrollto">Горячие закуски</a></li>
+			<li><a href="#meat" class="scrollto">Мясные блюда</a></li>
+			<li><a href="#about" class="scrollto">Супы </a></li>
+			<li><a href="#contacts" class="scrollto">Рыбные блюда</a></li>
+			<li><a href="#top" class="scrollto">Гриль меню</a></li>
+			<li><a href="#top" class="scrollto">Фирменные блюда</a></li>
+			<li><a href="#top" class="scrollto">Напитки</a></li>
 		</ul>
 	</div>
 </nav>
 
+<div class="sections">
 
 <section class="cold">
+	<div class="anchor" id="cold"></div>
 	<div class="container">
 		<div class="heading">
 			<div class="line"></div>
 			<h1>ХОЛОДНЫЕ ЗАКУСКИ</h1>
 		</div>
 	</div>
+
+
 	<div class="slider">
-		<div class="item item1">
-			<img src="images/item1.png" alt="item1">
+		<div class="item item1" data-id="01">
+			<div class="count">1</div>	
+			<div class="counter">0</div>
+			<img src="images/item1.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Ягненок</h3>
@@ -76,17 +104,33 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>620 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">620</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">620</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 
-		<div class="item item2">
-			<img src="images/item2.png" alt="item1">
+		<div class="item item2" data-id="02">
+			<img src="images/item2.png" alt="item1" data-action="img">
+			<div class="count">1</div>
+			<div class="counter">0</div>
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Индейка</h3>
@@ -97,17 +141,35 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>450 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">450</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">450</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="item item3">
-			<img src="images/item3.png" alt="item1">
+
+
+		<div class="item item3" data-id="03">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item3.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Гусь</h3>
@@ -117,17 +179,33 @@
 					Фаршированный яблоками
 				</div>
 				<div class="item__price">
-					<span>520 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">520</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">520</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="item item4">
-			<img src="images/item4.png" alt="item1">
+		<div class="item item4" data-id="04">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item4.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Утка</h3>
@@ -137,17 +215,32 @@
 					Фаршированная рисом, курагой и айвой
 				</div>
 				<div class="item__price">
-					<span>420 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">420</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">420</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="item item1">
-			<img src="images/item1.png" alt="item1">
+		<div class="item item1" data-id="05">
+			<div class="count">1</div>	
+			<div class="counter">0</div>
+			<img src="images/item1.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Ягненок</h3>
@@ -158,17 +251,33 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>620 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">620</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">620</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 
-		<div class="item item2">
-			<img src="images/item2.png" alt="item1">
+		<div class="item item2" data-id="06">
+			<img src="images/item2.png" alt="item1" data-action="img">
+			<div class="count">1</div>
+			<div class="counter">0</div>
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Индейка</h3>
@@ -179,17 +288,35 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>450 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">450</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">450</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="item item3">
-			<img src="images/item3.png" alt="item1">
+
+
+		<div class="item item3" data-id="07">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item3.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Гусь</h3>
@@ -199,23 +326,74 @@
 					Фаршированный яблоками
 				</div>
 				<div class="item__price">
-					<span>520 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">520</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">520</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="item item4" data-id="08">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item4.png" alt="item1" data-action="img">
+			<div class="item__info">
+				<div class="item__name">
+					<h3>Утка</h3>
+					<span>Вес: 225 г</span>
+				</div>
+				<div class="item__descr">
+					Фаршированная рисом, курагой и айвой
+				</div>
+				<div class="item__price">
+					<div class="item__price_before">
+						<span data-action="firstPrice">420</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">420</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</section>
 
 <div class="gradient_line">
 	<div class="line__left"></div>
 	<div class="line__right"></div>
 </div>
 
+</section>
+
 <section class="hot">
+	<div class="anchor" id="hot"></div>
 	<div class="container">
 		<div class="heading">
 			<div class="line"></div>
@@ -224,8 +402,10 @@
 	</div>
 	<div class="slider">
 
-		<div class="item item2">
-			<img src="images/item2.png" alt="item1">
+		<div class="item item2" data-id="02">
+			<img src="images/item2.png" alt="item1" data-action="img">
+			<div class="count">1</div>
+			<div class="counter">0</div>
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Индейка</h3>
@@ -236,37 +416,33 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>450 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">450</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">450</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="item item4">
-			<img src="images/item4.png" alt="item1">
-			<div class="item__info">
-				<div class="item__name">
-					<h3>Утка</h3>
-					<span>Вес: 225 г</span>
-				</div>
-				<div class="item__descr">
-					Фаршированная рисом, курагой и айвой
-				</div>
-				<div class="item__price">
-					<span>420 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="item item3">
-			<img src="images/item3.png" alt="item1">
+		<div class="item item3" data-id="03">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item3.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Гусь</h3>
@@ -276,17 +452,68 @@
 					Фаршированный яблоками
 				</div>
 				<div class="item__price">
-					<span>520 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">520</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">520</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="item item4" data-id="04">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item4.png" alt="item1" data-action="img">
+			<div class="item__info">
+				<div class="item__name">
+					<h3>Утка</h3>
+					<span>Вес: 225 г</span>
+				</div>
+				<div class="item__descr">
+					Фаршированная рисом, курагой и айвой
+				</div>
+				<div class="item__price">
+					<div class="item__price_before">
+						<span data-action="firstPrice">420</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">420</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="item item1">
-			<img src="images/item1.png" alt="item1">
+		<div class="item item1" data-id="01">
+			<div class="count">1</div>	
+			<div class="counter">0</div>
+			<img src="images/item1.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Ягненок</h3>
@@ -297,17 +524,32 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>620 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">620</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">620</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<div class="item item2">
-			<img src="images/item2.png" alt="item1">
+		</div>	
+		<div class="item item2" data-id="02">
+			<img src="images/item2.png" alt="item1" data-action="img">
+			<div class="count">1</div>
+			<div class="counter">0</div>
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Индейка</h3>
@@ -318,37 +560,35 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>450 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">450</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">450</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="item item4">
-			<img src="images/item4.png" alt="item1">
-			<div class="item__info">
-				<div class="item__name">
-					<h3>Утка</h3>
-					<span>Вес: 225 г</span>
-				</div>
-				<div class="item__descr">
-					Фаршированная рисом, курагой и айвой
-				</div>
-				<div class="item__price">
-					<span>420 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
-					</div>
-				</div>
-			</div>
-		</div>
 
-		<div class="item item3">
-			<img src="images/item3.png" alt="item1">
+
+		<div class="item item3" data-id="03">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item3.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Гусь</h3>
@@ -358,23 +598,112 @@
 					Фаршированный яблоками
 				</div>
 				<div class="item__price">
-					<span>520 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">520</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">520</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="item item4" data-id="04">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item4.png" alt="item1" data-action="img">
+			<div class="item__info">
+				<div class="item__name">
+					<h3>Утка</h3>
+					<span>Вес: 225 г</span>
+				</div>
+				<div class="item__descr">
+					Фаршированная рисом, курагой и айвой
+				</div>
+				<div class="item__price">
+					<div class="item__price_before">
+						<span data-action="firstPrice">420</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">420</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item item1" data-id="01">
+			<div class="count">1</div>	
+			<div class="counter">0</div>
+			<img src="images/item1.png" alt="item1" data-action="img">
+			<div class="item__info">
+				<div class="item__name">
+					<h3>Ягненок</h3>
+					<span>Вес: 225 г</span>
+				</div>
+				<div class="item__descr">
+					Фаршированный гречневой кашей, <br> 
+					курагой, апельсином и зеленым яблоком
+				</div>
+				<div class="item__price">
+					<div class="item__price_before">
+						<span data-action="firstPrice">620</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">620</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>	
-</section>
+
+	</div>
 
 <div class="gradient_line">
 	<div class="line__left"></div>
 	<div class="line__right"></div>
-</div>
+</div>		
 
+</section>
 
 <section class="meat">
+	<div class="anchor" id="meat"></div>
 	<div class="container">
 		<div class="heading">
 			<div class="line"></div>
@@ -382,8 +711,10 @@
 		</div>
 	</div>
 	<div class="slider">
-		<div class="item item1">
-			<img src="images/item1.png" alt="item1">
+		<div class="item item1" data-id="01">
+			<div class="count">1</div>	
+			<div class="counter">0</div>
+			<img src="images/item1.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Ягненок</h3>
@@ -394,17 +725,33 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>620 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">620</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">620</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 
-		<div class="item item2">
-			<img src="images/item2.png" alt="item1">
+		<div class="item item2" data-id="02">
+			<img src="images/item2.png" alt="item1" data-action="img">
+			<div class="count">1</div>
+			<div class="counter">0</div>
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Индейка</h3>
@@ -415,17 +762,35 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>450 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">450</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">450</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="item item3">
-			<img src="images/item3.png" alt="item1">
+
+
+		<div class="item item3" data-id="03">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item3.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Гусь</h3>
@@ -435,17 +800,33 @@
 					Фаршированный яблоками
 				</div>
 				<div class="item__price">
-					<span>520 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">520</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">520</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="item item4">
-			<img src="images/item4.png" alt="item1">
+		<div class="item item4" data-id="04">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item4.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Утка</h3>
@@ -455,17 +836,32 @@
 					Фаршированная рисом, курагой и айвой
 				</div>
 				<div class="item__price">
-					<span>420 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">420</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">420</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<div class="item item1">
-			<img src="images/item1.png" alt="item1">
+		<div class="item item1" data-id="01">
+			<div class="count">1</div>	
+			<div class="counter">0</div>
+			<img src="images/item1.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Ягненок</h3>
@@ -476,17 +872,33 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>620 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">620</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">620</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>	
 
-		<div class="item item2">
-			<img src="images/item2.png" alt="item1">
+		<div class="item item2" data-id="02">
+			<img src="images/item2.png" alt="item1" data-action="img">
+			<div class="count">1</div>
+			<div class="counter">0</div>
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Индейка</h3>
@@ -497,17 +909,35 @@
 					курагой, апельсином и зеленым яблоком
 				</div>
 				<div class="item__price">
-					<span>450 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">450</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">450</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="item item3">
-			<img src="images/item3.png" alt="item1">
+
+
+		<div class="item item3" data-id="03">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item3.png" alt="item1" data-action="img">
 			<div class="item__info">
 				<div class="item__name">
 					<h3>Гусь</h3>
@@ -517,10 +947,59 @@
 					Фаршированный яблоками
 				</div>
 				<div class="item__price">
-					<span>520 ₽</span>
-					<div class="item__btn_cart">
-						В корзину
-						<img src="images/Buy.svg" alt="cart">
+					<div class="item__price_before">
+						<span data-action="firstPrice">520</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">520</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="item item4" data-id="04">
+			<div class="count">1</div>
+			<div class="counter">0</div>
+			<img src="images/item4.png" alt="item1" data-action="img">
+			<div class="item__info">
+				<div class="item__name">
+					<h3>Утка</h3>
+					<span>Вес: 225 г</span>
+				</div>
+				<div class="item__descr">
+					Фаршированная рисом, курагой и айвой
+				</div>
+				<div class="item__price">
+					<div class="item__price_before">
+						<span data-action="firstPrice">420</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">420</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -528,12 +1007,194 @@
 	</div>
 </section>
 
-<div class="about">
+
+	<div class="item__page" data-action="itemPage">
+	<div class="container">
+		<div class="item__page-wrap">
+			<div class="item__page-btn-back" data-action="itemPageBackBtn">
+				<div class="btn-back__circle"></div>
+				<span>Вернуться назад</span>
+			</div>
+			<div class="item__page-img">
+				<img src="images/item__page-img.png" alt="img">
+			</div>
+			<div class="item__page-text">
+				<h2>Ягненок</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="gradient_line">
+		<div class="line__left"></div>
+		<div class="line__right"></div>
+	</div>
+
+	<div class="container">
+		<div class="heading">
+				<div class="line"></div>
+				<h1>С ЭТИМ ТОВАРОМ ПОКУПАЮТ</h1>
+		</div>
+	</div>
+
+	<div class="slider">
+		<div class="item item1">
+			<div class="count" data-count>1</div>
+			<img src="images/item1.png" alt="item1" data-action="img">
+			<div class="item__info">
+				<div class="item__name">
+					<h3>Ягненок</h3>
+					<span>Вес: 225 г</span>
+				</div>
+				<div class="item__descr">
+					Фаршированный гречневой кашей, <br> 
+					курагой, апельсином и зеленым яблоком
+				</div>
+				<div class="item__price">
+					<div class="item__price_before">
+						<span data-action="firstPrice">620</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">620</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item item2">
+			<img src="images/item2.png" alt="item1" data-action="img">
+			<div class="count" data-count>1</div>
+			<div class="item__info">
+				<div class="item__name">
+					<h3>Индейка</h3>
+					<span>Вес: 225 г</span>
+				</div>
+				<div class="item__descr">
+					Фаршированный гречневой кашей, <br> 
+					курагой, апельсином и зеленым яблоком
+				</div>
+				<div class="item__price">
+					<div class="item__price_before">
+						<span data-action="firstPrice">450</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">450</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="item item3">
+			<div class="count" data-count>1</div>
+			<img src="images/item3.png" alt="item1" data-action="img">
+			<div class="item__info">
+				<div class="item__name">
+					<h3>Гусь</h3>
+					<span>Вес: 225 г</span>
+				</div>
+				<div class="item__descr">
+					Фаршированный яблоками
+				</div>
+				<div class="item__price">
+					<div class="item__price_before">
+						<span data-action="firstPrice">520</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">520</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="item item4">
+			<div class="count" data-count>1</div>
+			<img src="images/item4.png" alt="item1" data-action="img">
+			<div class="item__info">
+				<div class="item__name">
+					<h3>Утка</h3>
+					<span>Вес: 225 г</span>
+				</div>
+				<div class="item__descr">
+					Фаршированная рисом, курагой и айвой
+				</div>
+				<div class="item__price">
+					<div class="item__price_before">
+						<span data-action="firstPrice">420</span><span class="span">₽</span> 
+						<div data-action="add" class="item__btn_cart">
+							В корзину
+							<img src="images/Buy.svg" alt="cart">
+						</div>
+					</div>
+					<div class="item__price_after hide">
+						<div data-action="minus" class="price__btn minus">
+							<div class="stick"></div>
+						</div>
+						<div class="price">
+							<span data-action="price">420</span>₽
+						</div>
+						<div data-action="plus" class="price__btn plus">
+							<div class="stick"></div>
+							<div class="stick rotate"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+	
+
+	<!-- <div class="item__page-slider"> -->
+	<!-- </div> -->		
+
+<section class="about">
+	<div class="anchor" id="about"></div>
 	<div class="about__body">
 		<div class="about__text">
 			<h2>НАШЕ КАФЕ</h2>
 			<p>Мы расположены в одном из самых живописных мест города — на берегу реки, это ваш оазис в черте города, куда можно сбежать от шумного и пыльного мегаполиса. Мы, действительно уникальные, ведь все продумано до мелочей: проект построен из дикого закарпатского сруба, камин в основном зале ресторана и панорамные окна с видом на реку, уютные беседки на берегу реки и лучшая видовая террасса, шатер с посадкой на 200 человек, сказочный детский домик и бассейн.</p>
-			<a href="#"><div class="about__btn">Посмотреть меню</div></a>
+			<a href="#top" class="scrollto"><div class="about__btn">Посмотреть меню</div></a>
 		</div>
 		<div class="about__sections">
 			<div class="about__section">
@@ -558,9 +1219,13 @@
 			</div>
 		</div>
 	</div>
+</section>
+
 </div>
 
-<div class="contacts">
+
+<section class="contacts" data-action="contacts">
+	<div class="anchor" id="contacts"></div>
 	<div class="here">
 		<img src="images/here.svg" alt="here">
 	</div>
@@ -586,7 +1251,7 @@
 				<div class="line__right2"></div>
 			</div>
 			<div class="contacts__reserv">
-				<a href="#"><div class="reserv__btn">Забронировать стол</div></a>
+				<a href="#top" class="scrollto"><div class="reserv__btn">Забронировать стол</div></a>
 				<div class="reserv__info">
 					<span>+7 (917) 510-57-59</span>
 					<p>Звоните или оставляйте заявку</p>
@@ -601,11 +1266,136 @@
 			</div>
 		</div>
 	</div>	
+</section>
+
+<div class="cart" data-action="cart">
+	<div class="container">
+		<div class="cart__nav">
+			<div class="cart__nav-btn" data-action="cartClose">
+				к выбору блюда
+			</div>
+			<div class="heading">
+				<div class="line"></div>
+				<h1>Корзина</h1> <p class="cart-p">(в корзине <span data-action="itemSum">0</span>)</p>
+			</div>
+		</div>
+
+
+		<div class="cart__items">
+
+			<!-- <div class="cart__item">
+				<div class="cart__info">
+					<img src="images/item1.png" alt="" data-action="img">
+					<div class="cart__text">
+						<h3>ПИЦЦА ДВОЙНАЯ ПЕППЕРОНИ</h3>
+						<div class="cart__descr">
+							Кальмары, мидии, креветки, сыр маасдам, 
+							красный лук, микс оливок, базилик, соус песто
+						</div>
+					</div>
+				</div>
+				<div class="cart__control">
+					<div class="cart__control-counter">
+						<div class="cart__control-minus"></div>
+						<div class="cart__counter">1</div>
+						<div class="cart__control-plus"></div>
+					</div>
+					<div class="cart_price">1640</div>
+					<div class="cart__del-btn"></div>
+				</div>
+			</div>
+			<div class="gradient_line">
+				<div class="line__left"></div>
+				<div class="line__right"></div>
+			</div> -->
+
+		</div>
+
+		<div class="cart__offer">
+			<h2>ДОБАВИТЬ К ЗАКАЗУ</h2>
+			<div class="cart__offer__wrapper">
+				<div class="cart__offer-item">
+					<img src="images/item__page-img.png" alt="img">
+					<div class="cart__offer-text">
+						<h3>Ягненок</h3>
+						<div class="offer__text">
+							<p>Добавить<div class="pl"></div></p>
+							<span>1640 ₽</span>
+						</div>
+					</div>
+				</div>
+				<div class="gradient_line">
+					<div class="line__left"></div>
+					<div class="line__right"></div>
+				</div>
+				<div class="cart__offer-item">
+					<img src="images/item__page-img.png" alt="img">
+					<div class="cart__offer-text">
+						<h3>Ягненок</h3>
+						<div class="offer__text">
+							<p>Добавить<div class="pl"></div></p>
+							<span>1640 ₽</span>
+						</div>
+					</div>
+				</div>
+				<div class="gradient_line">
+					<div class="line__left"></div>
+					<div class="line__right"></div>
+				</div>
+				<div class="cart__offer-item">
+					<img src="images/item__page-img.png" alt="img">
+					<div class="cart__offer-text">
+						<h3>Ягненок</h3>
+						<div class="offer__text">
+							<p>Добавить<div class="pl"></div></p>
+							<span>1640 ₽</span>
+						</div>
+					</div>
+				</div>
+				<div class="gradient_line">
+					<div class="line__left"></div>
+					<div class="line__right"></div>
+				</div>
+				<div class="cart__offer-item">
+					<img src="images/item__page-img.png" alt="img">
+					<div class="cart__offer-text">
+						<h3>Ягненок</h3>
+						<div class="offer__text">
+							<p>Добавить<div class="pl"></div></p>
+							<span>1640 ₽</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="gradient_line line__total">
+			<div class="line__left"></div>
+			<div class="line__right"></div>
+		</div>
+		<div class="cart__total">
+			<div class="total__text">
+				<div class="total__price">
+					<p>Итого:</p><span data-action='total'></span><span>₽</span>
+				</div>
+				<small>До бесплатной доставки не хватет: <span> 100 ₽</span></small>
+				<small>Минимальная сумма заказа 1500 </small>
+			</div>
+			<div class="total__btn">Оформить заказ</div>
+		</div>
+	</div>
 </div>
+
+
+
+
+
+
+</div>
+
 
 <footer>
 	<div class="footer">
-		<a href="#">
+		<a href="#top" class="scrollto">
 			<div class="footer__circle">
 				<img src="images/downarrow.svg" alt="down">
 			</div>
@@ -631,5 +1421,6 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="js/slick.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+
 </body>
 </html>
