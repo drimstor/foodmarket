@@ -158,92 +158,6 @@ window.addEventListener('click', function(event) {
 
 /* ___________________________________________________ */
 
-
-let itemInfo;
-const cartWrapper = document.querySelector('.cart__items');
-
-// Добавление товара в корзину
-window.addEventListener('click', (event) => {
-	if (event.target.dataset.action === 'add' || 
-		event.target.dataset.action === 'plus' ||
-		event.target.dataset.action === 'minus') {
-
-		// Находим родителя
-		const item = event.target.closest('.item');
-		// Сбор данных
-		menuItemInfo(item);
-		console.log(menuItemInfo(item))
-		// Находим товар в корзине по айди
-		const itemInCart = cartWrapper.querySelector(`[data-id="${itemInfo.id}"]`);
-		
-		// Если товар уже есть в корзине меняем счетчик и цену
-		if (itemInCart && event.target.dataset.action === 'add' || 
-		event.target.dataset.action === 'plus') {
-			const counterElement = itemInCart.querySelector('.cart__counter'),
-				priceElement = itemInCart.querySelector('.cart_price');
-			// Подставляем значения из объекта данных
-			counterElement.innerText = itemInfo.counter;
-			priceElement.innerText = priceFunc();
-		// Если товара нет то добавляем
-		} else if (!itemInCart) {  
-		// Шаблон HTML
-		const cartItemHTML = `
-			<div class="gradient_line">
-				<div class="line__left"></div>
-				<div class="line__right"></div>
-			</div>
-
-			<div class="cart__item" data-id='${itemInfo.id}'>
-			<div class="cart__info">
-				<img src="${itemInfo.imgSrc}" alt="${itemInfo.title}" data-action="img">
-				<div class="cart__text">
-					<h3>${itemInfo.title}</h3>
-					<div class="cart__descr">
-					${itemInfo.decription}</div>
-				</div>
-			</div>
-			<div class="cart__control">
-				<div class="cart__control-counter">
-					<div class="cart__control-minus" data-minus="minus"></div>
-					<div class="cart__counter">${itemInfo.counter}</div>
-					<div class="cart__control-plus" data-plus="plus"></div>
-				</div>
-				<div class="cart_price" data-price='${itemInfo.price}'>${priceFunc()}</div>
-				<div class="cart__del-btn" data-del="del"></div>
-			</div>
-			</div>`;
-		// Добавление шаблона в верстку
-		cartWrapper.insertAdjacentHTML('afterbegin', cartItemHTML);
-		}
-		// Клик по минусу на главной, удаляет из корзины
-		if  (itemInCart && event.target.dataset.action === 'minus') {
-
-			const counterElement = itemInCart.querySelector('.cart__counter'),
-					priceElement = itemInCart.querySelector('.cart_price');
-
-			// Подставляем значения из объекта данных
-			counterElement.innerText = itemInfo.counter;
-			priceElement.innerText = priceFunc();
-				// Если меньше 1 то удаляет из корзины
-				if (parseInt(counterElement.innerText) < 1 && event.target.dataset.action === 'minus') {	
-					itemInCart.remove();
-				}
-		} 
-	}
-	
-})
-
-// Добавление знака "₽"
-const priceFunc = () => {
-	if (itemInfo.counter == 1) {
-		return itemInfo.price + ' ₽'
-	} else {
-		return itemInfo.priceSumm + ' ₽'
-	}
-}
-
-/* ___________________________________________________ */
-
 // Счетчик товаров и цен внутри корзины
 window.addEventListener('click', (event) => {
 
@@ -393,6 +307,92 @@ window.addEventListener('click', (event) => {
 })
 /* ___________________________________________________ */
 
+
+let itemInfo;
+const cartWrapper = document.querySelector('.cart__items');
+
+// Добавление товара в корзину
+window.addEventListener('click', (event) => {
+	if (event.target.dataset.action === 'add' || 
+		event.target.dataset.action === 'plus' ||
+		event.target.dataset.action === 'minus') {
+
+		// Находим родителя
+		const item = event.target.closest('.item');
+		// Сбор данных
+		menuItemInfo(item);
+		console.log(menuItemInfo(item))
+		// Находим товар в корзине по айди
+		const itemInCart = cartWrapper.querySelector(`[data-id="${itemInfo.id}"]`);
+		
+		// Если товар уже есть в корзине меняем счетчик и цену
+		if (itemInCart && event.target.dataset.action === 'add' || 
+		event.target.dataset.action === 'plus') {
+			const counterElement = itemInCart.querySelector('.cart__counter'),
+				priceElement = itemInCart.querySelector('.cart_price');
+			// Подставляем значения из объекта данных
+			counterElement.innerText = itemInfo.counter;
+			priceElement.innerText = priceFunc(itemInfo);
+		// Если товара нет то добавляем
+		} else if (!itemInCart) {  
+		// Шаблон HTML
+		const cartItemHTML = `
+			<div class="gradient_line">
+				<div class="line__left"></div>
+				<div class="line__right"></div>
+			</div>
+
+			<div class="cart__item" data-id='${itemInfo.id}'>
+			<div class="cart__info">
+				<img src="${itemInfo.imgSrc}" alt="${itemInfo.title}" data-action="img">
+				<div class="cart__text">
+					<h3>${itemInfo.title}</h3>
+					<div class="cart__descr">
+					${itemInfo.decription}</div>
+				</div>
+			</div>
+			<div class="cart__control">
+				<div class="cart__control-counter">
+					<div class="cart__control-minus" data-minus="minus"></div>
+					<div class="cart__counter">${itemInfo.counter}</div>
+					<div class="cart__control-plus" data-plus="plus"></div>
+				</div>
+				<div class="cart_price" data-price='${itemInfo.price}'>${priceFunc(itemInfo)}</div>
+				<div class="cart__del-btn" data-del="del"></div>
+			</div>
+			</div>`;
+		// Добавление шаблона в верстку
+		cartWrapper.insertAdjacentHTML('afterbegin', cartItemHTML);
+		}
+		// Клик по минусу на главной, удаляет из корзины
+		if  (itemInCart && event.target.dataset.action === 'minus') {
+
+			const counterElement = itemInCart.querySelector('.cart__counter'),
+					priceElement = itemInCart.querySelector('.cart_price');
+
+			// Подставляем значения из объекта данных
+			counterElement.innerText = itemInfo.counter;
+			priceElement.innerText = priceFunc(itemInfo);
+				// Если меньше 1 то удаляет из корзины
+				if (parseInt(counterElement.innerText) < 1 && event.target.dataset.action === 'minus') {	
+					itemInCart.remove();
+				}
+		} 
+	}
+	
+})
+
+// Добавление знака "₽"
+const priceFunc = (itemInfo) => {
+	if (itemInfo.counter == 1) {
+		return itemInfo.price + ' ₽'
+	} else {
+		return itemInfo.priceSumm + ' ₽'
+	}
+}
+
+/* ___________________________________________________ */
+
 // Сбор данных по товару на главной
 const menuItemInfo = (item) => {
 	return itemInfo = {
@@ -454,7 +454,8 @@ const cartBtn = document.querySelector('[data-action="cartBtn"]'),
 	cart = document.querySelector('[data-action="cart"]'),
 	sections = document.querySelectorAll('section'),
 	itemPageBackBtn = document.querySelector('[data-action="itemPageBackBtn"]'),
-	itemPage = document.querySelector('[data-action="itemPage"]')
+	itemPage = document.querySelector('[data-action="itemPage"]'),
+	btnInCart = document.querySelector('[data-btn="cart"]');
 
 // Меняет окончание слова "товар"
 let itemEnd = function (item) {
@@ -468,8 +469,6 @@ let itemEnd = function (item) {
 		itemSum.innerText = item + ' товаров';
 	}
 }
-
-/* ___________________________________________________ */
 
 // Функции для задержки
 let displayBoolean = (element, value) => {
@@ -520,9 +519,51 @@ cartBtn.onclick = event => {
 	}
 }
 
+btnInCart.onclick = () => {
+	// Подсчет товаров для окончания
+	itemEnd(headerCounter.innerText);
+	// Открыть корзину если есть товары
+	if (parseInt(headerCounter.innerText) > 0) {
+		// Прячем секции
+		hideSections();
+		// Прячем карточку товара
+		exitItemPage();
+		// Показываем корзину
+		showCart();
+	}
+	
+}
+
 // Вход в карточку товара
 window.addEventListener('click', (event) => {
-	if (event.target.dataset.action == 'img') {
+	// Если открываем товар внутри карточки
+	if (event.target.dataset.action === 'img' && 
+	itemPage.classList.contains('fade__in')) {
+		// Прячем карточку товара
+		itemPage.classList.add('fade__out');
+		// Подставляем данные из карточки
+		setTimeout(transferItem, 1000, event);
+		// Показываем карточку товара
+		setTimeout(showItemPage, 1000, event);
+		// Скролл вверх
+		setTimeout(scrollToTop, 1000);
+	}
+	// Если открываем товар из корзиныы
+	if (event.target.dataset.action === 'img' &&
+	cart.classList.contains('fade__in')){
+		cart.classList.remove('fade__in');
+		// Прячем корзину
+		exitCart();
+		// Подставляем данные из карточки
+		transferItemFromCart(event);
+		// Показываем карточку товара
+		showItemPage();
+		// Прячем секции
+		hideSections(event);
+	}
+	// Если открываем товар на главной
+	if (event.target.dataset.action === 'img' &&
+	!itemPage.classList.contains('fade__in')) {
 		itemParent = event.target.closest('.item');
 		// Прячем секции
 		hideSections(event);
@@ -530,10 +571,60 @@ window.addEventListener('click', (event) => {
 		hideBanner();
 		// Прячем корзину
 		exitCart();
+		// Подставляем данные из карточки
+		transferItem(event);
 		// Показываем карточку товара
 		showItemPage();
 	}
 })
+
+
+
+
+
+/* ___________________________________________________ */
+
+// Собрать и подставить данные в карточку товара из главной
+const transferItem = (event) => {
+	// Находим родителя
+	const item = event.target.closest('.item');
+	// Сбор данных
+	menuItemInfo(item);
+	console.log(menuItemInfo(item))
+	// Заменяем значения
+	const h2 = itemPage.querySelector('h2'),
+	price = itemPage.querySelector('.item-price'),
+	img = itemPage.querySelector('[data-item="img"]'),
+	descr = itemPage.querySelector('.item__page-descr');
+
+	h2.innerText = itemInfo.title;
+	price.innerText = itemInfo.price;
+	img.src = itemInfo.imgSrc;
+	descr.innerText = itemInfo.decription;
+}
+
+// Собрать и подставить данные в карточку товара из корзины
+const transferItemFromCart = (event) => {
+	// Находим родителя
+	const item = event.target.closest('.cart__item');
+	// Сбор данных
+	cartItemInfo(item);
+	console.log(cartItemInfo(item))
+	// Заменяем значения
+	const h2 = itemPage.querySelector('h2'),
+	price = itemPage.querySelector('.item-price'),
+	img = itemPage.querySelector('[data-item="img"]'),
+	descr = itemPage.querySelector('.item__page-descr');
+
+	h2.innerText = itemInfo.title;
+	price.innerText = itemInfo.price;
+	img.src = itemInfo.imgSrc;
+	descr.innerText = itemInfo.decription;
+}
+
+
+
+
 
 /* ___________________________________________________ */
 
@@ -549,10 +640,12 @@ cartCloseBtn.onclick = event => {
 	// Скролл вверх и подсчет товаров
 	setTimeout(scrollToTop, 1000);
 	setTimeout(checkItemEnd, 1000);
+	cart.classList.remove('fade__in')
 }
 
 // Выход из карточки товара
 itemPageBackBtn.onclick = event => {
+
 	// Прячем карточку товара
 	exitItemPage();
 	// Показываем секции
@@ -567,9 +660,11 @@ itemPageBackBtn.onclick = event => {
 
 // Прячем карточку товара
 const exitItemPage = () => {
-	nav.classList.remove('scrl')
+	nav.classList.remove('scrl');
+	itemPage.classList.remove('fade__in');
 	itemPage.classList.add('fade__out');
 	setTimeout(displayBoolean, 1000, itemPage, 'none');
+	
 }
 
 // Прячем корзину
@@ -583,9 +678,12 @@ const exitCart = () => {
 const hideSections = (event) => {
 	sections.forEach(element => {
 		element.classList.add('fade__out');
+		
 		setTimeout(displayBoolean, 1000, element, 'none');
 	});
 	if (event) {
+	contacts.classList.remove('fade__out');
+	contacts.classList.add('fade__in');
 	setTimeout(displayBoolean, 1000, contacts, 'block');
 	}
 }
@@ -606,11 +704,19 @@ const hideBanner = () => {
 /* ___________________________________________________ */
 
 // Показываем карточку товара
-const showItemPage = () => {
+const showItemPage = (notScroll) => {
+	if (notScroll) {
 	itemPage.classList.remove('fade__out');
 	setTimeout(displayBoolean, 1000, itemPage, 'block');
 	itemPage.classList.add('fade__in');
-	setTimeout(scrollToTop, 1000);
+	
+	} else {
+		itemPage.classList.remove('fade__out');
+		setTimeout(displayBoolean, 1000, itemPage, 'block');
+		itemPage.classList.add('fade__in');
+		setTimeout(scrollToTop, 1000);
+	}
+	
 }
 
 // Показываем корзину
@@ -628,6 +734,7 @@ const showSections = () => {
 			element.classList.remove('fade__out');
 			element.classList.add('fade__in');
 			setTimeout(displayBoolean, 1000, element, 'block');
+			contacts.classList.remove('fade__in');
 		});
 	} else {
 		sections.forEach(element => {
@@ -635,9 +742,13 @@ const showSections = () => {
 			element.classList.add('fade__in');
 			setTimeout(displayBoolean, 1000, element, 'block');
 			setTimeout(displayBoolean, 1000, about, 'none');
+			contacts.classList.remove('fade__in');
 		});
 		about.style.display='none';
 	}
+	contacts.classList.add('fade__out');
+	contacts.classList.remove('fade__in');
+	setTimeout(displayBoolean, 1000, contacts, 'block');
 }
 
 // Показываем баннер
