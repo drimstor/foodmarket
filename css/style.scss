@@ -1068,6 +1068,11 @@ footer {
 
 //__________________
 
+.wrapper {
+	max-width: 1250px;
+	margin: 0 auto;
+}
+
 .item__page {
 	padding-top: 150px;
 	display: none;
@@ -1113,7 +1118,7 @@ footer {
 .item__page-wrap {
 	position: relative;
 	margin: 0 auto;
-	width: 90%;
+	width: 92%;
 	background: linear-gradient(90deg, #494544 0%, #504B4A 100%);
 	border-radius: 10px;
 	display: flex;
@@ -1122,9 +1127,8 @@ footer {
 }
 
 .item__page-img { 
-	width: 48%;
+	width: 42%;
 	img {
-		max-width: 599px;
 		width: 100%;
 		height: 100%;
 		border-top-left-radius: 10px;
@@ -1133,9 +1137,61 @@ footer {
 }
 
 .item__page-text {
-	padding: 50px;
+	padding: 30px 50px 10px 50px;
+	position: relative;
+	&::after {
+		content: '';
+		width: 100%;
+		height: 1px;
+		background: rgba(255, 255, 255, 0.1);;
+		position: absolute;
+		left: 0px;
+		bottom: 32px;
+
+	}
+}
+.item__page-price {
+	.header__btn_cart {
+		margin: 20px 25px 30px 0;
+		align-items: center;
+		padding: 5px 20px;
+		cursor: pointer;
+	}
 }
 
+.item__page-price {
+	display: flex;
+	align-items: center;
+	@include text(1.5778rem,1.6889rem);
+	font-family: 'Gilroy-Bold';
+	span {
+		margin-bottom: 10px;
+	}
+}
+
+.item__page-descr {
+	color: #CFCFCF;
+	@include text(0.7778rem,0.8889rem);
+	margin-top: 10px;
+	margin-bottom: 65px;
+}
+
+table {
+	position: relative;
+	bottom: -10px;
+	@include text(0.6667rem,0.7778rem);
+	td {
+		padding-right: 50px;
+		padding-bottom: 10px;
+	}
+	
+}
+
+.tr-up {
+	font-family: 'Gilroy-UltraLight';
+	color: #CFCFCF;
+	
+}
 
 .item__page-slider {
 	padding-bottom: 250px;
@@ -1145,6 +1201,8 @@ footer {
 	justify-content: center;
 	align-items: center;
 }
+
+
 
 //__________________
 
