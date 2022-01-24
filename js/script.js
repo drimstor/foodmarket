@@ -711,8 +711,6 @@ modals();
 
 /* ___________________________________________________ */
 
-
-
 const burgerBtn = document.querySelector('.header__burger'),
 	searchBar = document.querySelector('.input__search'),
 	aScroll = document.querySelectorAll('.nav__menu a.scrollto'),
@@ -736,18 +734,28 @@ burgerBtn.onclick = event => {
 	// Закрыть по клику ссылки в бургере
 	nav.addEventListener('click', (event) => {
 		if (event.target.classList.contains('scrollto')) {
-			bodyLock();
+
+			let pagePosition = window.scrollY;
+			document.body.classList.remove('lock');
+			pagePosition = parseInt(document.body.dataset.position, 10)
+			document.body.style.top = '';
+			window.scroll({top: pagePosition, left: 0})
+			document.body.removeAttribute('data-position');
 			burgerClose();
+			// bodyLock();
 		}
 	})
-		
-
 }
 
-
-
-
-
+// Плавный скролл
+$('a.scrollto').click(function() {
+	let elementClick = $(this).attr('href')
+	let destination = $(elementClick).offset().top;
+	jQuery('html:not(:animated),body:not(:animated)').animate({
+	   scrollTop: destination
+	}, 800);
+	// return false;
+})
 
 // Запрет скролла	
 const bodyLock = () => {
@@ -764,22 +772,6 @@ const bodyLock = () => {
 		document.body.style.top = -pagePosition + 'px';
 	}
 }
-
-
-
-// Плавный скролл
-$('a.scrollto').click(function() {
-	let elementClick = $(this).attr('href')
-	let destination = $(elementClick).offset().top;
-	jQuery('html:not(:animated),body:not(:animated)').animate({
-	   scrollTop: destination
-	}, 800);
-	// return false;
-  })
-
-
-
-
 
 /* ___________________________________________________ */
 
