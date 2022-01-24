@@ -78,7 +78,7 @@ window.addEventListener('click', function(event) {
 	}
 	// Если клик по любому плюсу прибавляем общий счетчик
 	if (event.target.dataset.action === 'plus' ||
-		 event.target.hasAttribute('data-plus')
+		 event.target.dataset.plus === 'plus' 
 		 ) {
 		// +1 Общий счетчик
 		headerCounter.innerText = ++headerCounter.innerText;
@@ -100,7 +100,7 @@ window.addEventListener('click', function(event) {
 		
 	// Если клик по любому минусу отнимаем общий счетчик
 	if (event.target.dataset.action === 'minus' ||
-	event.target.hasAttribute('data-minus')) {
+	event.target.dataset.minus === 'minus') {
 		if (parseInt(itemCounter.innerText) > 1) {
 			// -1 Общий счетчик
 			headerCounter.innerText = --headerCounter.innerText;
@@ -158,6 +158,7 @@ window.addEventListener('click', function(event) {
 
 /* ___________________________________________________ */
 
+
 let itemInfo;
 const cartWrapper = document.querySelector('.cart__items');
 
@@ -203,12 +204,12 @@ window.addEventListener('click', (event) => {
 			</div>
 			<div class="cart__control">
 				<div class="cart__control-counter">
-					<div class="cart__control-minus" data-minus></div>
+					<div class="cart__control-minus" data-minus="minus"></div>
 					<div class="cart__counter">${itemInfo.counter}</div>
-					<div class="cart__control-plus" data-plus></div>
+					<div class="cart__control-plus" data-plus="plus"></div>
 				</div>
 				<div class="cart_price" data-price='${itemInfo.price}'>${priceFunc()}</div>
-				<div class="cart__del-btn" data-del></div>
+				<div class="cart__del-btn" data-del="del"></div>
 			</div>
 			</div>`;
 		// Добавление шаблона в верстку
@@ -248,9 +249,9 @@ window.addEventListener('click', (event) => {
 
 	let card, cardCounter, priceCounter, firstPrice;
 
-	if (event.target.hasAttribute('data-plus') ||
-	event.target.hasAttribute('data-minus') ||
-	event.target.hasAttribute('data-del')) {
+	if (event.target.dataset.plus === 'plus'  ||
+	event.target.dataset.minus === 'minus' ||
+	event.target.dataset.del === 'del') {
 		// Находим родителя и счетчики
 		card = event.target.closest('.cart__item'),
 		cardCounter = card.querySelector('.cart__counter'),
@@ -258,7 +259,7 @@ window.addEventListener('click', (event) => {
 		firstPrice = card.querySelector('[data-price]').dataset.price;
 	}
 	//  При клике на плюс
-	if (event.target.hasAttribute('data-plus')){
+	if (event.target.dataset.plus === 'plus' ){
 		// +1 Счетчик
 		cardCounter.innerText = ++cardCounter.innerText;
 		// +1 Цена
@@ -286,7 +287,7 @@ window.addEventListener('click', (event) => {
 		console.log(cartItemInfo(item))
 	}
 	// При клике на минус
-	if (event.target.hasAttribute('data-minus')) {
+	if (event.target.dataset.minus === 'minus') {
 		
 		if ((parseInt(cardCounter.innerText) > 1)) {
 		// -1 Счетчик
@@ -351,7 +352,7 @@ window.addEventListener('click', (event) => {
 		}
 	}
 	// Удаление товара
-	if (event.target.hasAttribute('data-del')) {
+	if (event.target.dataset.del === 'del') {
 
 		card = event.target.closest('.cart__item'),
 		cardCounter = card.querySelector('.cart__counter');
