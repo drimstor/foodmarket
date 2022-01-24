@@ -24,7 +24,8 @@ $(document).ready(function(){
 			{
 				breakpoint: 768,
 				settings: {
-					slidesToShow:1.5
+					slidesToShow:2,
+					centerMode: true
 				}
 			}
 			,
@@ -41,17 +42,12 @@ $(document).ready(function(){
 
 /* ___________________________________________________ */
 
-let total = document.querySelector('[data-action="total"]');
-
-// FINISH
-
-let itemParent, itemCounter, counter;
+let total = document.querySelector('[data-action="total"]'), itemParent, itemCounter, counter;
 const headerCounter = document.querySelector('[data-action="headerCounter"]'),
 	itemSum = document.querySelector('[data-action="itemSum"]');
 
-	// Счетчик товаров и цен
+// Счетчик товаров и цен на главной
 window.addEventListener('click', function(event) {
-	let card, cardCounter, priceCounter, firstPrice;
 	// Проверка был ли клик именно по нужным кнопкам
 	// Поиск родительской карточки кнопки и счетчика
 	if (event.target.dataset.action === 'add' || 
@@ -117,9 +113,10 @@ window.addEventListener('click', function(event) {
 				counter.innerText = --counter.innerText;
 				// -1 Цена
 				price.innerText = parseInt(price.innerText) - parseInt(firstPrice.innerText);
+				// Сумма в корзине
 				total.innerText = +total.innerText - parseInt(firstPrice.innerText);
-			console.log(total.innerText)
-			
+				console.log(total.innerText);
+
 			}
 
 		}
@@ -132,7 +129,7 @@ window.addEventListener('click', function(event) {
 					firstPrice = itemParent.querySelector('[data-action="firstPrice"]');
 				// Сумма в корзине
 				total.innerText = +total.innerText - parseInt(firstPrice.innerText);
-			console.log(total.innerText)
+				console.log(total.innerText)
 
 				// Удаляем визуал	
 				itemBefore.classList.remove('hide');
@@ -146,15 +143,7 @@ window.addEventListener('click', function(event) {
 				// Находим родителя
 				const item = event.target.closest('.item');
 				// Сбор данных
-				itemInfo = {
-					id: item.dataset.id,
-					imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
-					title: item.querySelector('h3').innerText,
-					decription: item.querySelector('.item__descr').innerText,
-					price: item.querySelector('[data-action="firstPrice"]').innerText,
-					priceSumm: item.querySelector('[data-action="price"]').innerText,
-					counter: item.querySelector('.counter').innerText
-				}
+				menuItemInfo(item);
 				// Находим товар в корзине по айди
 				const itemInCart = cartWrapper.querySelector(`[data-id="${itemInfo.id}"]`);	
 				// Удаление
@@ -169,201 +158,6 @@ window.addEventListener('click', function(event) {
 
 /* ___________________________________________________ */
 
-
-
-
-
-// FINISH
-
-// Счетчик внутри корзины
-window.addEventListener('click', (event) => {
-
-	let card, cardCounter, priceCounter, firstPrice;
-
-	if (event.target.hasAttribute('data-plus') ||
-	event.target.hasAttribute('data-minus') ||
-	event.target.hasAttribute('data-del')) {
-		// Находим родителя и счетчики
-		card = event.target.closest('.cart__item'),
-		cardCounter = card.querySelector('.cart__counter'),
-		priceCounter = card.querySelector('.cart_price'),
-		firstPrice = card.querySelector('[data-price]').dataset.price;
-	}
-	//  При клике на плюс
-	if (event.target.hasAttribute('data-plus')){
-		// +1 Счетчик
-		cardCounter.innerText = ++cardCounter.innerText;
-		// +1 Цена
-		priceCounter.innerText = parseInt(priceCounter.innerText) + parseInt(firstPrice)  + ' ₽';
-		// Сумма в корзине
-		total.innerText = +total.innerText + parseInt(firstPrice);
-		console.log(total.innerText)
-
-		// Окончание слова "товаров"
-		checkItemEnd();
-		itemEnd(headerCounter.innerText);
-		// Находим родителя
-		const item = event.target.closest('.cart__item');
-		// Сбор данных по товару
-		itemInfo = {
-			id: item.dataset.id,
-			imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
-			title: item.querySelector('h3').innerText,
-			decription: item.querySelector('.cart__descr').innerText,
-			price: item.querySelector('[data-price]').dataset.price,
-			priceSumm: parseInt(item.querySelector('[data-price]').innerText),
-			counter: item.querySelector('.cart__counter').innerText
-		}
-		// Находим товар на главной по айди
-		const itemInMain = document.querySelector(`[data-id="${itemInfo.id}"]`),
-			// Находим счетчики и цену
-			itemCount = itemInMain.querySelector('.count'),
-			itemCounter = itemInMain.querySelector('.counter'),
-			itemPrice = itemInMain.querySelector('[data-action="price"]');
-			// Добавляем значения товару на главной
-		itemCount.innerText = ++itemCount.innerText;
-		itemCounter.innerText = ++itemCounter.innerText;
-		itemPrice.innerText = itemInfo.priceSumm;
-
-		console.log(itemInfo)
-	}
-	// При клике на минус
-	if (event.target.hasAttribute('data-minus')) {
-		
-		if ((parseInt(cardCounter.innerText) > 1)) {
-		// -1 Счетчик
-		cardCounter.innerText = --cardCounter.innerText;
-		// -1 Цена
-		priceCounter.innerText = parseInt(priceCounter.innerText) - parseInt(firstPrice) + ' ₽';
-		// Сумма в корзине
-		total.innerText = +total.innerText - parseInt(firstPrice);
-		console.log(total.innerText)
-		// Окончание слова "товаров"
-		checkItemEnd();
-		itemEnd(headerCounter.innerText);
-		// Находим родителя
-		const item = event.target.closest('.cart__item');
-		// Сбор данных по товару
-		itemInfo = {
-			id: item.dataset.id,
-			imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
-			title: item.querySelector('h3').innerText,
-			decription: item.querySelector('.cart__descr').innerText,
-			price: item.querySelector('[data-price]').dataset.price,
-			priceSumm: parseInt(item.querySelector('[data-price]').innerText),
-			counter: item.querySelector('.cart__counter').innerText
-		}
-
-		// Находим товар на главной по айди
-		const itemInMain = document.querySelector(`[data-id="${itemInfo.id}"]`),
-			// Находим счетчики и цену
-			itemCount = itemInMain.querySelector('.count'),
-			itemCounter = itemInMain.querySelector('.counter'),
-			itemPrice = itemInMain.querySelector('[data-action="price"]');
-		// Добавляем значения товару на главной
-		itemCount.innerText = --itemCount.innerText;
-		itemCounter.innerText = --itemCounter.innerText;
-		itemPrice.innerText = itemInfo.priceSumm;
-
-		console.log(itemInfo)
-
-		} else {
-			if (parseInt(cardCounter.innerText) !== 0) {
-				// Окончание слова "товаров"
-				checkItemEnd();
-				itemEnd(headerCounter.innerText);
-
-				// Находим родителя
-				const item = event.target.closest('.cart__item');
-				// Сбор данных по товару
-				itemInfo = {
-					id: item.dataset.id,
-					imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
-					title: item.querySelector('h3').innerText,
-					decription: item.querySelector('.cart__descr').innerText,
-					price: item.querySelector('[data-price]').dataset.price,
-					priceSumm: parseInt(item.querySelector('[data-price]').innerText),
-					counter: item.querySelector('.cart__counter').innerText
-				}
-
-				// Находим товар на главной по айди
-				const itemInMain = document.querySelector(`[data-id="${itemInfo.id}"]`),
-				// Находим счетчики и цену
-				itemCount = itemInMain.querySelector('.count'),
-				itemCounter = itemInMain.querySelector('.counter'),
-				itemBefore = itemInMain.querySelector('.item__price_before'),
-				itemAfter = itemInMain.querySelector('.item__price_after');
-				// Удаляем визуал	
-				itemCount.classList.remove('vis')
-				itemBefore.classList.remove('hide');
-				itemAfter.classList.add('hide');
-				// Удаление
-				const deeel = () => {card.remove()};
-				// С анимацией
-				card.classList.add('fade__out');
-				setTimeout(deeel, 700, card, 'none');
-				// Очистка счетчиков
-				itemCount.innerText = 1;
-				itemCounter.innerText = 0;
-				// Сумма в корзине
-				total.innerText = +total.innerText - parseInt(firstPrice);
-			console.log(total.innerText)
-			} 
-		}
-	}
-	// Удаление товара
-	if (event.target.hasAttribute('data-del')) {
-
-		card = event.target.closest('.cart__item'),
-		cardCounter = card.querySelector('.cart__counter');
-		headerCounter.innerText =  parseInt(headerCounter.innerText) - parseInt(cardCounter.innerText);
-		// Окончание слова "товаров"
-		checkItemEnd();
-		itemEnd(headerCounter.innerText);
-		// Находим родителя
-		const item = event.target.closest('.cart__item');
-		// Сбор данных по товару
-		itemInfo = {
-			id: item.dataset.id,
-			imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
-			title: item.querySelector('h3').innerText,
-			decription: item.querySelector('.cart__descr').innerText,
-			price: item.querySelector('[data-price]').dataset.price,
-			priceSumm: parseInt(item.querySelector('[data-price]').innerText),
-			counter: item.querySelector('.cart__counter').innerText
-		}
-		// Находим товар на главной по айди
-		const itemInMain = document.querySelector(`[data-id="${itemInfo.id}"]`),
-			// Находим счетчики и цену
-			itemCount = itemInMain.querySelector('.count'),
-			itemCounter = itemInMain.querySelector('.counter'),
-			itemPrice = itemInMain.querySelector('[data-action="price"]'),
-			itemFirstPrice = itemInMain.querySelector('[data-action="firstPrice"]'),
-			itemBefore = itemInMain.querySelector('.item__price_before'),
-			itemAfter = itemInMain.querySelector('.item__price_after');
-		// Сумма в корзине
-		total.innerText = +total.innerText - parseInt(itemPrice.innerText);
-		console.log(total.innerText)
-		// Обнуляем счетчики
-		itemCount.innerText = 1;
-		itemCounter.innerText = 0;
-		itemPrice.innerText = itemFirstPrice.innerText;
-		// Удаляем визуал	
-		itemCount.classList.remove('vis');
-		itemBefore.classList.remove('hide');
-		itemAfter.classList.add('hide');
-		// Удаление
-		const deeel = () => {card.remove()};
-		// С анимацией
-		card.classList.add('fade__out');
-		setTimeout(deeel, 700, card, 'none');
-	}
-})
-
-/* ___________________________________________________ */
-
-// FINISH
-
 let itemInfo;
 const cartWrapper = document.querySelector('.cart__items');
 
@@ -376,16 +170,8 @@ window.addEventListener('click', (event) => {
 		// Находим родителя
 		const item = event.target.closest('.item');
 		// Сбор данных
-		itemInfo = {
-			id: item.dataset.id,
-			imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
-			title: item.querySelector('h3').innerText,
-			decription: item.querySelector('.item__descr').innerText,
-			price: item.querySelector('[data-action="firstPrice"]').innerText,
-			priceSumm: item.querySelector('[data-action="price"]').innerText,
-			counter: item.querySelector('.counter').innerText
-		}
-		console.log(itemInfo)
+		menuItemInfo(item);
+		console.log(menuItemInfo(item))
 		// Находим товар в корзине по айди
 		const itemInCart = cartWrapper.querySelector(`[data-id="${itemInfo.id}"]`);
 		
@@ -452,6 +238,183 @@ const priceFunc = () => {
 		return itemInfo.price + ' ₽'
 	} else {
 		return itemInfo.priceSumm + ' ₽'
+	}
+}
+
+/* ___________________________________________________ */
+
+// Счетчик товаров и цен внутри корзины
+window.addEventListener('click', (event) => {
+
+	let card, cardCounter, priceCounter, firstPrice;
+
+	if (event.target.hasAttribute('data-plus') ||
+	event.target.hasAttribute('data-minus') ||
+	event.target.hasAttribute('data-del')) {
+		// Находим родителя и счетчики
+		card = event.target.closest('.cart__item'),
+		cardCounter = card.querySelector('.cart__counter'),
+		priceCounter = card.querySelector('.cart_price'),
+		firstPrice = card.querySelector('[data-price]').dataset.price;
+	}
+	//  При клике на плюс
+	if (event.target.hasAttribute('data-plus')){
+		// +1 Счетчик
+		cardCounter.innerText = ++cardCounter.innerText;
+		// +1 Цена
+		priceCounter.innerText = parseInt(priceCounter.innerText) + parseInt(firstPrice)  + ' ₽';
+		// Сумма в корзине
+		total.innerText = +total.innerText + parseInt(firstPrice);
+		console.log(total.innerText)
+		// Окончание слова "товаров"
+		checkItemEnd();
+		itemEnd(headerCounter.innerText);
+		// Находим родителя
+		const item = event.target.closest('.cart__item');
+		// Сбор данных по товару
+		cartItemInfo(item);
+		// Находим товар на главной по айди
+		const itemInMain = document.querySelector(`[data-id="${itemInfo.id}"]`),
+			// Находим счетчики и цену
+			itemCount = itemInMain.querySelector('.count'),
+			itemCounter = itemInMain.querySelector('.counter'),
+			itemPrice = itemInMain.querySelector('[data-action="price"]');
+			// Добавляем значения товару на главной
+		itemCount.innerText = ++itemCount.innerText;
+		itemCounter.innerText = ++itemCounter.innerText;
+		itemPrice.innerText = itemInfo.priceSumm;
+		console.log(cartItemInfo(item))
+	}
+	// При клике на минус
+	if (event.target.hasAttribute('data-minus')) {
+		
+		if ((parseInt(cardCounter.innerText) > 1)) {
+		// -1 Счетчик
+		cardCounter.innerText = --cardCounter.innerText;
+		// -1 Цена
+		priceCounter.innerText = parseInt(priceCounter.innerText) - parseInt(firstPrice) + ' ₽';
+		// Сумма в корзине
+		total.innerText = +total.innerText - parseInt(firstPrice);
+		console.log(total.innerText)
+		// Окончание слова "товаров"
+		checkItemEnd();
+		itemEnd(headerCounter.innerText);
+		// Находим родителя
+		const item = event.target.closest('.cart__item');
+		// Сбор данных по товару
+		cartItemInfo(item);
+		// Находим товар на главной по айди
+		const itemInMain = document.querySelector(`[data-id="${itemInfo.id}"]`),
+			// Находим счетчики и цену
+			itemCount = itemInMain.querySelector('.count'),
+			itemCounter = itemInMain.querySelector('.counter'),
+			itemPrice = itemInMain.querySelector('[data-action="price"]');
+		// Добавляем значения товару на главной
+		itemCount.innerText = --itemCount.innerText;
+		itemCounter.innerText = --itemCounter.innerText;
+		itemPrice.innerText = itemInfo.priceSumm;
+
+		console.log(itemInfo)
+
+		} else {
+			if (parseInt(cardCounter.innerText) !== 0) {
+				// Окончание слова "товаров"
+				checkItemEnd();
+				itemEnd(headerCounter.innerText);
+				// Находим родителя
+				const item = event.target.closest('.cart__item');
+				// Сбор данных по товару
+				cartItemInfo(item);
+				// Находим товар на главной по айди
+				const itemInMain = document.querySelector(`[data-id="${itemInfo.id}"]`),
+				// Находим счетчики и цену
+				itemCount = itemInMain.querySelector('.count'),
+				itemCounter = itemInMain.querySelector('.counter'),
+				itemBefore = itemInMain.querySelector('.item__price_before'),
+				itemAfter = itemInMain.querySelector('.item__price_after');
+				// Удаляем визуал	
+				itemCount.classList.remove('vis')
+				itemBefore.classList.remove('hide');
+				itemAfter.classList.add('hide');
+				// Удаление
+				const deeel = () => {card.remove()};
+				// С анимацией
+				card.classList.add('fade__out');
+				setTimeout(deeel, 700, card, 'none');
+				// Очистка счетчиков
+				itemCount.innerText = 1;
+				itemCounter.innerText = 0;
+				// Сумма в корзине
+				total.innerText = +total.innerText - parseInt(firstPrice);
+			console.log(total.innerText)
+			} 
+		}
+	}
+	// Удаление товара
+	if (event.target.hasAttribute('data-del')) {
+
+		card = event.target.closest('.cart__item'),
+		cardCounter = card.querySelector('.cart__counter');
+		headerCounter.innerText =  parseInt(headerCounter.innerText) - parseInt(cardCounter.innerText);
+		// Окончание слова "товаров"
+		checkItemEnd();
+		itemEnd(headerCounter.innerText);
+		// Находим родителя
+		const item = event.target.closest('.cart__item');
+		// Сбор данных по товару
+		cartItemInfo(item);
+		// Находим товар на главной по айди
+		const itemInMain = document.querySelector(`[data-id="${itemInfo.id}"]`),
+			// Находим счетчики и цену
+			itemCount = itemInMain.querySelector('.count'),
+			itemCounter = itemInMain.querySelector('.counter'),
+			itemPrice = itemInMain.querySelector('[data-action="price"]'),
+			itemFirstPrice = itemInMain.querySelector('[data-action="firstPrice"]'),
+			itemBefore = itemInMain.querySelector('.item__price_before'),
+			itemAfter = itemInMain.querySelector('.item__price_after');
+		// Сумма в корзине
+		total.innerText = +total.innerText - parseInt(itemPrice.innerText);
+		console.log(total.innerText)
+		// Обнуляем счетчики
+		itemCount.innerText = 1;
+		itemCounter.innerText = 0;
+		itemPrice.innerText = itemFirstPrice.innerText;
+		// Удаляем визуал	
+		itemCount.classList.remove('vis');
+		itemBefore.classList.remove('hide');
+		itemAfter.classList.add('hide');
+		// Удаление
+		const deeel = () => {card.remove()};
+		// С анимацией
+		card.classList.add('fade__out');
+		setTimeout(deeel, 700, card, 'none');
+	}
+})
+/* ___________________________________________________ */
+
+// Сбор данных по товару на главной
+const menuItemInfo = (item) => {
+	return itemInfo = {
+		id: item.dataset.id,
+		imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
+		title: item.querySelector('h3').innerText,
+		decription: item.querySelector('.item__descr').innerText,
+		price: item.querySelector('[data-action="firstPrice"]').innerText,
+		priceSumm: item.querySelector('[data-action="price"]').innerText,
+		counter: item.querySelector('.counter').innerText
+	}
+}
+
+// Сбор данный по товару из корзины
+const cartItemInfo = (item) => {
+	return itemInfo = {
+		id: item.dataset.id,
+		imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
+		title: item.querySelector('h3').innerText,
+		decription: item.querySelector('.cart__descr').innerText,
+		price: item.querySelector('[data-price]').dataset.price,
+		priceSumm: parseInt(item.querySelector('[data-price]').innerText),
+		counter: item.querySelector('.cart__counter').innerText
 	}
 }
 
@@ -748,6 +711,8 @@ modals();
 
 /* ___________________________________________________ */
 
+
+
 const burgerBtn = document.querySelector('.header__burger'),
 	searchBar = document.querySelector('.input__search'),
 	aScroll = document.querySelectorAll('.nav__menu a.scrollto'),
@@ -767,18 +732,22 @@ burgerBtn.onclick = event => {
 		searchBar.classList.remove('active');
 		nav.classList.remove('active');
 		header.classList.remove('active');
-		bodyLock();
 	}
 	// Закрыть по клику ссылки в бургере
-	if (nav.classList.contains('active')) {
-		aScroll.forEach(element => {
-			element.onclick = () => {
-				behaviorScroll;
-				burgerClose();
-			}
-		});	
-	}
+	nav.addEventListener('click', (event) => {
+		if (event.target.classList.contains('scrollto')) {
+			bodyLock();
+			burgerClose();
+		}
+	})
+		
+
 }
+
+
+
+
+
 
 // Запрет скролла	
 const bodyLock = () => {
@@ -796,15 +765,21 @@ const bodyLock = () => {
 	}
 }
 
+
+
 // Плавный скролл
-let behaviorScroll = $('a.scrollto').click(function() {
+$('a.scrollto').click(function() {
 	let elementClick = $(this).attr('href')
 	let destination = $(elementClick).offset().top;
 	jQuery('html:not(:animated),body:not(:animated)').animate({
 	   scrollTop: destination
 	}, 800);
-	return false;
+	// return false;
   })
+
+
+
+
 
 /* ___________________________________________________ */
 
