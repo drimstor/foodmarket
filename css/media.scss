@@ -563,6 +563,10 @@
 			backdrop-filter: blur(2px);
 		}
 	}
+	.item__page-text {
+		width: 100%;
+		align-items: center;
+	}
 }
 
 @media screen and (max-width: 733px) {

@@ -1141,6 +1141,11 @@ footer {
 .item__page-text {
 	padding: 30px 50px 10px 50px;
 	position: relative;
+	width: 58%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
 	&::after {
 		content: '';
 		width: 100%;
@@ -1148,8 +1153,7 @@ footer {
 		background: rgba(255, 255, 255, 0.1);;
 		position: absolute;
 		left: 0px;
-		bottom: 32px;
-
+		bottom: 30px;
 	}
 }
 .item__page-price {
