@@ -542,13 +542,13 @@ window.addEventListener('click', (event) => {
 		// Прячем карточку товара
 		itemPage.classList.add('fade__out');
 		// Подставляем данные из карточки
-		setTimeout(transferItem, 1000, event);
+		setTimeout(transferItem, 900, event);
 		// Показываем карточку товара
-		setTimeout(showItemPage, 1000, event);
+		setTimeout(showItemPage, 900, event);
 		// Скролл вверх
-		setTimeout(scrollToTop, 1000);
+		setTimeout(scrollToTop, 900);
 	}
-	// Если открываем товар из корзиныы
+	// Если открываем товар из корзины
 	if (event.target.dataset.action === 'img' &&
 	cart.classList.contains('fade__in')){
 		cart.classList.remove('fade__in');
@@ -699,14 +699,14 @@ const hideBanner = () => {
 const showItemPage = (notScroll) => {
 	if (notScroll) {
 	itemPage.classList.remove('fade__out');
-	setTimeout(displayBoolean, 1000, itemPage, 'block');
+	setTimeout(displayBoolean, 900, itemPage, 'block');
 	itemPage.classList.add('fade__in');
 	
 	} else {
 		itemPage.classList.remove('fade__out');
-		setTimeout(displayBoolean, 1000, itemPage, 'block');
+		setTimeout(displayBoolean, 900, itemPage, 'block');
 		itemPage.classList.add('fade__in');
-		setTimeout(scrollToTop, 1000);
+		setTimeout(scrollToTop, 900);
 	}
 	
 }
