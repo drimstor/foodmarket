@@ -578,10 +578,6 @@ window.addEventListener('click', (event) => {
 	}
 })
 
-
-
-
-
 /* ___________________________________________________ */
 
 // Собрать и подставить данные в карточку товара из главной
@@ -621,10 +617,6 @@ const transferItemFromCart = (event) => {
 	img.src = itemInfo.imgSrc;
 	descr.innerText = itemInfo.decription;
 }
-
-
-
-
 
 /* ___________________________________________________ */
 
@@ -763,6 +755,22 @@ const showBanner = () => {
 		about.style.display='none';
 	}
 }
+
+/* ___________________________________________________ */
+
+// const f = (a) => {
+
+// 	return (b) => {
+// 		return a + b
+// 	}
+// }
+
+// const Func1 = f(10)
+// const Func2 = f(2)
+
+// console.log(Func1(2))
+// console.log(Func2(4))
+// console.log(f(4)(6))
 
 /* ___________________________________________________ */
 
