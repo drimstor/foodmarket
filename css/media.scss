@@ -197,7 +197,8 @@
     	right: 50px;
 	}
 	.heading {
-		margin: 00px 10px 40px;
+		padding-top: 40px;
+		margin: 00px 10px 15px;
 	}
 	.about {
 		display: none;
@@ -336,12 +337,14 @@
 		li {
 			font-family:inherit;
 			font-size: 30px;
-			margin-top: 40px;
+			margin-top: 45px;
 		}
 		li.active {
 			font-family: inherit;
 			&::before {
 				background: #61896700;
+				width: 0;
+				height: 0;
 			}
 		}
 	}
@@ -415,10 +418,6 @@
 		.cart__nav {
 			margin-left: 20px;
 		}
-	}
-	.heading {
-		padding-top: 30px;
-		margin-bottom: 15px;
 	}
 	//---------------
 
@@ -573,6 +572,10 @@
 }
 
 @media screen and (max-width: 426px) {
+	.heading {
+		margin-bottom: 0;
+		padding-top: 30px;
+	}
 	table {
 		left: 5px;
 	}
@@ -593,7 +596,7 @@
 			margin-top: 5px;
 	}
 	.heading h1 {
-		font-size: 1.25rem;
+		font-size: 1.6rem;
 		line-height: 1.5rem;
 	}
 	html {
@@ -625,6 +628,9 @@
 }
 
 @media screen and (max-width: 333px) {
+	.heading h1 {
+		font-size: 1.5rem;
+	}
 	.nav__menu {
 		padding: 10px;
 		li {
