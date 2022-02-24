@@ -250,68 +250,68 @@ function showBanner() {
 
 // Сбор данных по товару на главной
 function menuItemInfo(item) {
-	return (itemInfo = {
-	  id: item.dataset.id,
-	  imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
-	  title: item.querySelector('h3').innerText,
-	  decription: item.querySelector('.item__descr').innerText,
-	  price: item.querySelector('[data-action="firstPrice"]').innerText,
-	  priceSumm: item.querySelector('[data-action="price"]').innerText,
-	  counter: item.querySelector('.counter').innerText,
-	});
-  }
-  
-  // Сбор данный по товару из корзины
-  function cartItemInfo(item) {
-	return (itemInfo = {
-	  id: item.dataset.id,
-	  imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
-	  title: item.querySelector('h3').innerText,
-	  decription: item.querySelector('.cart__descr').innerText,
-	  price: item.querySelector('[data-price]').dataset.price,
-	  priceSumm: parseInt(item.querySelector('[data-price]').innerText),
-	  counter: item.querySelector('.cart__counter').innerText,
-	});
-  }
-  
-  // Собрать и подставить данные в карточку товара из главной
-  function transferItem(event) {
-	// Находим родителя
-	const item = event.target.closest('.item');
-	// Сбор данных
-	menuItemInfo(item);
-	console.log(menuItemInfo(item));
-	// Находим значения
-	const h2 = itemPage.querySelector('h2'),
-	  price = itemPage.querySelector('.item-price'),
-	  img = itemPage.querySelector('[data-item="img"]'),
-	  descr = itemPage.querySelector('.item__page-descr');
-	// Заменяем значения
-	h2.innerText = itemInfo.title;
-	price.innerText = itemInfo.price;
-	img.src = itemInfo.imgSrc;
-	descr.innerText = itemInfo.decription;
-  }
-  
-  // Собрать и подставить данные в карточку товара из корзины
-  function transferItemFromCart(event) {
-	// Находим родителя
-	const item = event.target.closest('.cart__item');
-	// Сбор данных
-	cartItemInfo(item);
-	console.log(cartItemInfo(item));
-	// Находим значения
-	const h2 = itemPage.querySelector('h2'),
-	  price = itemPage.querySelector('.item-price'),
-	  img = itemPage.querySelector('[data-item="img"]'),
-	  descr = itemPage.querySelector('.item__page-descr');
-	// Заменяем значения
-	h2.innerText = itemInfo.title;
-	price.innerText = itemInfo.price;
-	img.src = itemInfo.imgSrc;
-	descr.innerText = itemInfo.decription;
-  }
-  
+  return (itemInfo = {
+    id: item.dataset.id,
+    imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
+    title: item.querySelector('h3').innerText,
+    decription: item.querySelector('.item__descr').innerText,
+    price: item.querySelector('[data-action="firstPrice"]').innerText,
+    priceSumm: item.querySelector('[data-action="price"]').innerText,
+    counter: item.querySelector('.counter').innerText,
+  });
+}
+
+// Сбор данный по товару из корзины
+function cartItemInfo(item) {
+  return (itemInfo = {
+    id: item.dataset.id,
+    imgSrc: item.querySelector('[data-action="img"]').getAttribute('src'),
+    title: item.querySelector('h3').innerText,
+    decription: item.querySelector('.cart__descr').innerText,
+    price: item.querySelector('[data-price]').dataset.price,
+    priceSumm: parseInt(item.querySelector('[data-price]').innerText),
+    counter: item.querySelector('.cart__counter').innerText,
+  });
+}
+
+// Собрать и подставить данные в карточку товара из главной
+function transferItem(event) {
+  // Находим родителя
+  const item = event.target.closest('.item');
+  // Сбор данных
+  menuItemInfo(item);
+  console.log(menuItemInfo(item));
+  // Находим значения
+  const h2 = itemPage.querySelector('h2'),
+    price = itemPage.querySelector('.item-price'),
+    img = itemPage.querySelector('[data-item="img"]'),
+    descr = itemPage.querySelector('.item__page-descr');
+  // Заменяем значения
+  h2.innerText = itemInfo.title;
+  price.innerText = itemInfo.price;
+  img.src = itemInfo.imgSrc;
+  descr.innerText = itemInfo.decription;
+}
+
+// Собрать и подставить данные в карточку товара из корзины
+function transferItemFromCart(event) {
+  // Находим родителя
+  const item = event.target.closest('.cart__item');
+  // Сбор данных
+  cartItemInfo(item);
+  console.log(cartItemInfo(item));
+  // Находим значения
+  const h2 = itemPage.querySelector('h2'),
+    price = itemPage.querySelector('.item-price'),
+    img = itemPage.querySelector('[data-item="img"]'),
+    descr = itemPage.querySelector('.item__page-descr');
+  // Заменяем значения
+  h2.innerText = itemInfo.title;
+  price.innerText = itemInfo.price;
+  img.src = itemInfo.imgSrc;
+  descr.innerText = itemInfo.decription;
+}
+
 /* ___________________________________________________ */
 
 // Счетчик товаров и цен на главной
@@ -636,6 +636,17 @@ window.addEventListener('click', (event) => {
 /* ___________________________________________________ */
 
 /* Дополнительный функционал */
+
+// Прелоадер 
+document.body.onload = function() {
+  setTimeout(function(){
+    let preloader = document.getElementById('page-preloader');
+    if(!preloader.classList.contains('done'))
+    {
+      preloader.classList.add('done');
+    }
+  }, 1000);
+}
 
 // Модальное окно
 function modals() {
