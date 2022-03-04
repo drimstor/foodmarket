@@ -437,7 +437,7 @@ window.addEventListener('click', (event) => {
 // Счетчик товаров и цен внутри корзины
 window.addEventListener('click', (event) => {
   if (
-    event.target.classList.contains('cart__control-plus') ||
+    event.target.dataset.plus === 'plus' ||
     event.target.dataset.minus === 'minus' ||
     event.target.dataset.del === 'del'
   ) {
@@ -448,7 +448,7 @@ window.addEventListener('click', (event) => {
       (firstPrice = card.querySelector('[data-price]').dataset.price);
   }
   //  При клике на плюс
-  if (event.target.classList.contains('cart__control-plus')) {
+  if (event.target.dataset.plus === 'plus') {
     // +1 Счетчик
     cardCounter.innerText = ++cardCounter.innerText;
     // +1 Цена
