@@ -34,7 +34,8 @@ const total = document.querySelector('[data-action="total"]'),
   searchBar = document.querySelector('.input__search'),
   aScroll = document.querySelectorAll('.nav__menu a.scrollto'),
   contacts = document.querySelector('[data-action="contacts"]'),
-  liScroll = document.querySelectorAll('.nav__menu li');
+  liScroll = document.querySelectorAll('.nav__menu li'),
+  logosImg = document.querySelector('#logosImg');
 
 /* ___________________________________________________ */
 
@@ -115,7 +116,9 @@ window.addEventListener('click', (event) => {
 /* ___________________________________________________ */
 
 // Выход из корзины
-cartCloseBtn.addEventListener('click', (event) => {
+cartCloseBtn.addEventListener('click', cartClose);
+
+function cartClose(event) {
   event.preventDefault();
   // Прячем корзину
   exitCart();
@@ -127,10 +130,12 @@ cartCloseBtn.addEventListener('click', (event) => {
   setTimeout(scrollToTop, 1000);
   setTimeout(checkItemEnd, 1000);
   cart.classList.remove('fade__in');
-});
+}
 
 // Выход из карточки товара
-itemPageBackBtn.addEventListener('click', (event) => {
+itemPageBackBtn.addEventListener('click', itemClose);
+
+function itemClose() {
   // Прячем карточку товара
   exitItemPage();
   // Показываем секции
@@ -139,6 +144,16 @@ itemPageBackBtn.addEventListener('click', (event) => {
   showBanner();
   // Скролл вверх и подсчет товаров
   setTimeout(scrollToTop, 1000);
+}
+
+// Выход на главную
+window.addEventListener('click', (event) => {
+  if (event.target.classList.contains('exit') && cart.classList.contains('fade__in')) {
+    cartClose(event);
+  }
+  if (event.target.classList.contains('exit') && itemPage.classList.contains('fade__in')) {
+    itemClose();
+  }
 });
 
 /* ___________________________________________________ */
@@ -422,7 +437,7 @@ window.addEventListener('click', (event) => {
 // Счетчик товаров и цен внутри корзины
 window.addEventListener('click', (event) => {
   if (
-    event.target.dataset.plus === 'plus' ||
+    event.target.classList.contains('cart__control-plus') ||
     event.target.dataset.minus === 'minus' ||
     event.target.dataset.del === 'del'
   ) {
@@ -433,7 +448,7 @@ window.addEventListener('click', (event) => {
       (firstPrice = card.querySelector('[data-price]').dataset.price);
   }
   //  При клике на плюс
-  if (event.target.dataset.plus === 'plus') {
+  if (event.target.classList.contains('cart__control-plus')) {
     // +1 Счетчик
     cardCounter.innerText = ++cardCounter.innerText;
     // +1 Цена
@@ -637,16 +652,15 @@ window.addEventListener('click', (event) => {
 
 /* Дополнительный функционал */
 
-// Прелоадер 
-document.body.onload = function() {
-  setTimeout(function(){
+// Прелоадер
+document.body.onload = function () {
+  setTimeout(function () {
     let preloader = document.getElementById('page-preloader');
-    if(!preloader.classList.contains('done'))
-    {
+    if (!preloader.classList.contains('done')) {
       preloader.classList.add('done');
     }
   }, 1000);
-}
+};
 
 // Модальное окно
 function modals() {
